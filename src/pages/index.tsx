@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
-import { CheckCircle, Settings, User, FileText, HelpCircle, LogOut, Home as HomeIcon} from "lucide-react"
+import { CheckCircle, Settings, User, FileText, HelpCircle, LogOut, Home as HomeIcon } from "lucide-react"
 import { Geist, Geist_Mono } from "next/font/google"
 import { useState } from "react"
 import {
@@ -22,6 +22,7 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { StepSelector } from "@/components/steps"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -197,17 +198,23 @@ export default function Home() {
         </Sidebar>
 
         <SidebarInset>
-          <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
+          <div className="grid grid-rows-[auto_1fr_auto] min-h-screen relative">
             <div className="p-8 text-center">
-              <div className="flex justify-between items-center mb-4">
-                <div></div> 
-                <SidebarTrigger className="ml-auto" />
+              <div className="flex justify-between items-center mb-4 absolute right-16 top-16">
+                <div />
+                <div className="ml-auto absolute right-16 top-16">
+                  <StepSelector
+                    currentStep={currentStep}
+                  />
+                </div>
+                <SidebarTrigger
+                  className="ml-auto"
+                  iconClassName="size-28" />
               </div>
               <div className="flex justify-center mb-4">{getStepIcon(currentStep)}</div>
               <div className="text-2xl font-bold">{getStepTitle()}</div>
               <div>{getStepDescription()}</div>
 
-              {/* Progress Bar */}
               <div className="mt-24">
                 <div className="flex w-full justify-between text-sm text-muted-foreground mb-8">
                   <span>
@@ -220,7 +227,9 @@ export default function Home() {
             </div>
 
             <main className="px-32 space-y-6 flex-grow">
-              {currentStep === 1 && <div className="space-y-4">Step 1</div>}
+              {currentStep === 1 && <div className="space-y-4">
+                Step 1
+              </div>}
 
               {currentStep === 2 && <div className="space-y-4">Step 2</div>}
 
