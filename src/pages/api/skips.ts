@@ -4,7 +4,6 @@ import { SkipType } from "@/index";
 
 const skips = readJsonFile('skips');
 
-// Set CORS headers
 const allowCors = (res: NextApiResponse) => {
   res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -16,19 +15,15 @@ const allowCors = (res: NextApiResponse) => {
 };
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log("====here")
-  // Handle preflight request
   if (req.method === 'OPTIONS') {
     allowCors(res);
     return res.status(200).end();
   }
 
-  // Set CORS headers for all responses
   allowCors(res);
   const { method, query } = req;
   switch (method) {
     case 'GET':
-      console.log("Fetching skips data")
       try {
         const { size, limit } = query;
         let filteredSkips = skips;

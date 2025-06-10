@@ -14,7 +14,9 @@
     "updated_at": "2025-04-07T13:16:52.813",
     "allowed_on_road": true,
     "allows_heavy_waste": true,
-    "url": "/skip-images/4 Yarder Skip.jpg"
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "30-40 black bags",
+    "ideal_use": "Small household cleanouts, garden waste, or minor renovation debris"
   },
   {
     "id": 17934,
@@ -31,8 +33,9 @@
     "updated_at": "2025-04-07T13:16:52.992",
     "allowed_on_road": true,
     "allows_heavy_waste": true,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "50-60 black bags",
+    "ideal_use": "Medium house clear-outs or renovation projects like kitchen or bathroom refits"
   },
   {
     "id": 17935,
@@ -49,8 +52,9 @@
     "updated_at": "2025-04-07T13:16:53.171",
     "allowed_on_road": true,
     "allows_heavy_waste": true,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "60-80 black bags",
+    "ideal_use": "Large household clear-outs, bulky furniture disposal, or small construction jobs"
   },
   {
     "id": 17936,
@@ -67,8 +71,9 @@
     "updated_at": "2025-04-07T13:16:53.339",
     "allowed_on_road": false,
     "allows_heavy_waste": false,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "80-100 black bags",
+    "ideal_use": "Major renovation projects or full house clearances"
   },
   {
     "id": 17937,
@@ -85,8 +90,9 @@
     "updated_at": "2025-04-07T13:16:53.516",
     "allowed_on_road": false,
     "allows_heavy_waste": false,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "100-120 black bags",
+    "ideal_use": "Large scale refurbishments or commercial clear-outs"
   },
   {
     "id": 17938,
@@ -103,8 +109,9 @@
     "updated_at": "2025-04-07T13:16:53.69",
     "allowed_on_road": false,
     "allows_heavy_waste": false,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "110-130 black bags",
+    "ideal_use": "Office or shop refits and commercial projects"
   },
   {
     "id": 17939,
@@ -121,8 +128,9 @@
     "updated_at": "2025-04-07T13:16:53.876",
     "allowed_on_road": false,
     "allows_heavy_waste": false,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "130-150 black bags",
+    "ideal_use": "Very large house clearances, construction sites, or shop fittings"
   },
   {
     "id": 15124,
@@ -139,8 +147,9 @@
     "updated_at": "2025-04-07T13:16:52.434",
     "allowed_on_road": false,
     "allows_heavy_waste": true,
-    "url": "/skip-images/4 Yarder Skip.jpg"
-
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "160-200 black bags",
+    "ideal_use": "Demolition work, large building projects, and high-volume industrial waste"
   },
   {
     "id": 15125,
@@ -157,6 +166,8 @@
     "updated_at": "2025-04-07T13:16:52.603",
     "allowed_on_road": false,
     "allows_heavy_waste": false,
-    "url": "/skip-images/4 Yarder Skip.jpg"
+    "url": "/skip-images/4 Yarder Skip.jpg",
+    "bag_equivalent": "300-400 black bags",
+    "ideal_use": "Major construction sites, factory clearance, or large commercial operations"
   }
 ]
