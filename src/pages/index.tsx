@@ -22,6 +22,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { StepSelector } from "@/components/steps"
+import { SkipSelection } from "@/components/skip-selection"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -196,6 +197,7 @@ export default function Home() {
 
             <main className="p-32 space-y-6 flex-grow bg-lime-400 flex flex-col justify-between">
               <div className="flex-grow">
+                <SkipSelection />
                 {currentStep === 1 && <div className="space-y-4">
                   Step 1
                 </div>}
