@@ -1,26 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { motion, type PanInfo } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { SkipCard } from "./cards/skip"
 import { SkipType } from "@/index";
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from "react-query"
 
 export const SkipSelection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [skips, setSkips] = useState<SkipType[]>([])
 
-  const { data: skips } = useQuery<SkipType[], Error>({
-    queryKey: ['skips'],
-    queryFn: () => fetch('http://localhost:3000/api/skips').then(res => res.json()),
-    initialData: []
-  })
+  // const { data } = useQuery<SkipType[], Error>({
+  //   queryKey: ['skips'],
+  //   queryFn: () => fetch('http://localhost:3000/api/skips').then(res => res.json()),
+  //   initialData: []
+  // })
 
+
+  // const skips = useMemo(() => data || [], [data])
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50
 
-    if (info.offset.x > threshold && currentIndex > 0) {  
+    if (info.offset.x > threshold && currentIndex > 0) {
       setCurrentIndex(currentIndex - 1)
     } else if (info.offset.x < -threshold && currentIndex < skips.length - 1) {
       setCurrentIndex(currentIndex + 1)
@@ -35,21 +38,32 @@ export const SkipSelection = () => {
     setCurrentIndex((prev) => (prev - 1 + skips.length) % skips.length)
   }
 
+  useEffect(() => {
+    const fetchSkips = async () => {
+      const response = await fetch('http://localhost:3000/api/skips')
+      const data = await response.json()
+      setSkips(data)
+    }
+    fetchSkips()
+  }, [])
+
+
+
   return (
     <div className="w-full bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Choose Your Skip Size {skips?.length}</h2>
+          <h2 className="text-3xl font-bold text-gray-900 mb-2">Choose Your Skip {skips?.length} Size</h2>
           <p className="text-gray-600">Find the perfect skip for your project</p>
         </div>
 
         {/* Mobile Carousel */}
-        <div className="md:hidden bg-red-300">
-          <div className="relative overflow-hidden px-16 bg-lime-300 h-400">
+        <div className="md:hidden border border-red-400 max-w-dvw">
+          <div className="relative overflow-hidden px-16 h-400">
             <motion.div
-              className="flex items-center"
+              className="flex items-center border border-lime-400"
               animate={{
-                x: `calc(-${currentIndex * 280}px + ${280}px)`,
+                x: `calc(-${currentIndex * 280}px + ${80}px)`,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               drag="x"
@@ -62,10 +76,9 @@ export const SkipSelection = () => {
               style={{ width: `${(skips.length + 2) * 280}px` }}
             >
               {skips.map((skip, index) => {
-                const offset = index - currentIndex;
+                const offset = index - currentIndex - 1;
                 const isActive = index === currentIndex;
                 const isAdjacent = Math.abs(offset) === 1;
-                const isVisible = Math.abs(offset) <= 2;
 
                 return (
                   <motion.div

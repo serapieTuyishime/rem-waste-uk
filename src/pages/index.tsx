@@ -195,7 +195,7 @@ export default function Home() {
               </div>
             </div>
 
-            <main className="p-32 space-y-6 flex-grow bg-lime-400 flex flex-col justify-between">
+            <main className="p-32 space-y-6 flex-grow flex flex-col justify-between">
               <div className="flex-grow">
                 <SkipSelection />
                 {currentStep === 1 && <div className="space-y-4">
