@@ -1,7 +1,6 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
 import { CheckCircle, Settings, User, FileText, HelpCircle, LogOut, Home as HomeIcon } from "lucide-react"
 import { Geist, Geist_Mono } from "next/font/google"
 import { useState } from "react"
@@ -92,24 +91,6 @@ export default function Home() {
     }
   }
 
-  const getStepIcon = (step: number) => {
-    return <span className="size-24 bg-amber-500">{step}</span>
-  }
-
-  const getStepTitle = () => {
-    const titles = ["Personal Information", "Account Security", "Profile Setup", "Review & Confirm"]
-    return titles[currentStep - 1]
-  }
-
-  const getStepDescription = () => {
-    const descriptions = [
-      "Tell us who you are",
-      "Secure your account",
-      "Personalize your profile",
-      "Review and create your account",
-    ]
-    return descriptions[currentStep - 1]
-  }
   return (
     <div
       className={`${geistSans.className} ${geistMono.className} min-h-screen font-[family-name:var(--font-geist-sans)]`}
@@ -200,9 +181,9 @@ export default function Home() {
         <SidebarInset>
           <div className="grid grid-rows-[auto_1fr_auto] min-h-screen relative">
             <div className="p-8 text-center">
-              <div className="flex justify-between items-center mb-4 absolute right-16 top-16">
-                <div />
-                <div className="ml-auto absolute right-16 top-16">
+
+              <div className="flex justify-between items-start mb-4 absolute w-full p-24">
+                <div className="top-16">
                   <StepSelector
                     currentStep={currentStep}
                   />
@@ -211,33 +192,21 @@ export default function Home() {
                   className="ml-auto"
                   iconClassName="size-28" />
               </div>
-              <div className="flex justify-center mb-4">{getStepIcon(currentStep)}</div>
-              <div className="text-2xl font-bold">{getStepTitle()}</div>
-              <div>{getStepDescription()}</div>
-
-              <div className="mt-24">
-                <div className="flex w-full justify-between text-sm text-muted-foreground mb-8">
-                  <span>
-                    Step {currentStep} of {totalSteps} total steps
-                  </span>
-                  <span>{Math.round((currentStep / totalSteps) * 100)}% Complete</span>
-                </div>
-                <Progress value={(currentStep / totalSteps) * 100} className="h-8" />
-              </div>
             </div>
 
-            <main className="px-32 space-y-6 flex-grow">
-              {currentStep === 1 && <div className="space-y-4">
-                Step 1
-              </div>}
+            <main className="p-32 space-y-6 flex-grow bg-lime-400 flex flex-col justify-between">
+              <div className="flex-grow">
+                {currentStep === 1 && <div className="space-y-4">
+                  Step 1
+                </div>}
 
-              {currentStep === 2 && <div className="space-y-4">Step 2</div>}
+                {currentStep === 2 && <div className="space-y-4">Step 2</div>}
 
-              {currentStep === 3 && <div className="space-y-4">Step 3</div>}
+                {currentStep === 3 && <div className="space-y-4">Step 3</div>}
 
-              {currentStep === 4 && <div className="space-y-6">Step 4</div>}
-
-              <div className="flex justify-between pt-6">
+                {currentStep === 4 && <div className="space-y-6">Step 4</div>}
+              </div>
+              <div className="flex justify-between justify-self-end pt-6">
                 <Button variant="outline" onClick={handleBack} disabled={currentStep === 1}>
                   Back
                 </Button>
