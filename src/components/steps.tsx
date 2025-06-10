@@ -5,12 +5,12 @@ export const StepSelector = ({ currentStep }: { currentStep: number }) => {
   const containerRef = useRef(null)
 
   const steps = useMemo(() => [
-    { id: 1, title: "Order Food", description: "Choose your meal" },
-    { id: 2, title: "Add Details", description: "Delivery info" },
-    { id: 3, title: "Payment", description: "Pay for order" },
-    { id: 4, title: "Confirmation", description: "Order confirmed" },
-    { id: 5, title: "Preparation", description: "Kitchen preparing" },
-    { id: 6, title: "Delivery", description: "On the way" },
+    { id: 1, title: "Postcode" },
+    { id: 2, title: "Waste type" },
+    { id: 3, title: "Select skip" },
+    { id: 4, title: "Permit check"},
+    { id: 5, title: "Choose date"},
+    { id: 6, title: "Payment" },
   ], [])
 
 
@@ -68,11 +68,6 @@ export const StepSelector = ({ currentStep }: { currentStep: number }) => {
             </div>
           ))}
         </div>
-      </div>
-
-
-      <div className="mt-4 text-sm text-gray-500 text-center">
-        Step {currentStep} of {steps.length}
       </div>
     </div>
   )

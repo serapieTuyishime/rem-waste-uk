@@ -1,25 +1,16 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import { motion, type PanInfo } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { SkipCard } from "./cards/skip"
 import { SkipType } from "@/index";
-import { useQuery } from "react-query"
 
 export const SkipSelection = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [skips, setSkips] = useState<SkipType[]>([])
 
-  // const { data } = useQuery<SkipType[], Error>({
-  //   queryKey: ['skips'],
-  //   queryFn: () => fetch('http://localhost:3000/api/skips').then(res => res.json()),
-  //   initialData: []
-  // })
-
-
-  // const skips = useMemo(() => data || [], [data])
   const handleDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50
 
@@ -40,7 +31,7 @@ export const SkipSelection = () => {
 
   useEffect(() => {
     const fetchSkips = async () => {
-      const response = await fetch('http://localhost:3000/api/skips')
+      const response = await fetch('/api/skips')
       const data = await response.json()
       setSkips(data)
     }
@@ -48,29 +39,28 @@ export const SkipSelection = () => {
   }, [])
 
 
-
   return (
-    <div className="w-full bg-gray-50 py-8">
+    <div className="w-full h-full bg-background py-8 pt-100">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Choose Your Skip {skips?.length} Size</h2>
-          <p className="text-gray-600">Find the perfect skip for your project</p>
+          <h2 className="text-3xl font-bold mb-2">Choose Your Skip Size</h2>
+          <p className="text-foreground/30">Find the perfect skip for your project</p>
         </div>
 
         {/* Mobile Carousel */}
-        <div className="md:hidden border border-red-400 max-w-dvw">
-          <div className="relative overflow-hidden px-16 h-400">
+        <div className="md:hidden max-w-dvw">
+          <div className="relative overflow-hidden px-16 min-h-400">
             <motion.div
-              className="flex items-center border border-lime-400"
+              className="flex items-center"
               animate={{
-                x: `calc(-${currentIndex * 280}px + ${80}px)`,
+                x: `calc(-${currentIndex * 320}px + ${30}px)`,
               }}
               transition={{ type: "spring", stiffness: 300, damping: 30 }}
               drag="x"
-              dragConstraints={{
-                left: `calc(-${(skips.length - 1) * 280}px)`,
-                right: `${280}px`,
-              }}
+              // dragConstraints={{
+              //   left: `calc(-${(skips.length - 1) * 320}px)`,
+              //   right: `${280}px`,
+              // }}
               onDragEnd={handleDragEnd}
               dragElastic={0.2}
               style={{ width: `${(skips.length + 2) * 280}px` }}
@@ -84,7 +74,7 @@ export const SkipSelection = () => {
                   <motion.div
                     key={skip.id}
                     className="flex-shrink-0 px-2"
-                    style={{ width: "280px" }}
+                    style={{ width: "320px" }}
                     animate={{
                       scale: isActive ? 1 : isAdjacent ? 0.8 : 0.6,
                       opacity: isActive ? 1 : isAdjacent ? 0.7 : 0.4,
@@ -116,7 +106,7 @@ export const SkipSelection = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`size-8 rounded-full transition-all ${index === currentIndex ? 'bg-blue-600 w-4' : 'bg-gray-300'
+                  className={`size-8 rounded-full transition-all ${index === currentIndex ? 'bg-primary' : 'bg-gray-300'
                     }`}
                 />
               ))}
@@ -129,25 +119,8 @@ export const SkipSelection = () => {
               disabled={currentIndex === skips.length - 1}
               className="p-2"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="size-16" />
             </Button>
-          </div>
-
-          {/* Mobile Current Skip Info */}
-          <div className="mt-6 text-center">
-            <motion.div
-              key={currentIndex}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-lg p-4 shadow-sm"
-            >
-              <h3 className="font-semibold text-lg text-gray-900">{skips[currentIndex]?.size}</h3>
-              <p className="text-sm text-gray-600 mt-1">
-                {skips[currentIndex]?.size} • {skips[currentIndex]?.size} • {skips[currentIndex]?.price_before_vat}
-              </p>
-              <p className="text-xs text-gray-500 mt-2">Swipe left or right to explore more options</p>
-            </motion.div>
           </div>
         </div>
 

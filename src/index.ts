@@ -12,5 +12,6 @@ export interface SkipType {
   created_at: string,
   updated_at: string,
   allowed_on_road: boolean,
-  allows_heavy_waste: boolean
+  allows_heavy_waste: boolean,
+  url: string
 }

@@ -35,7 +35,7 @@ const geistMono = Geist_Mono({
 })
 
 export default function Home() {
-  const [currentStep, setCurrentStep] = useState(1)
+  const [currentStep, setCurrentStep] = useState(3)
   const totalSteps = 6
 
   const validateStep1 = () => {
@@ -182,31 +182,35 @@ export default function Home() {
         <SidebarInset>
           <div className="grid grid-rows-[auto_1fr_auto] min-h-screen relative">
             <div className="p-8 text-center">
-
-              <div className="flex justify-between items-start mb-4 absolute w-full p-24">
-                <div className="top-16">
+              <div className="flex justify-between items-start w-full right-0 mb-4 absolute p-24 pr-0">
+                <div className="top-16 right-16">
                   <StepSelector
                     currentStep={currentStep}
                   />
                 </div>
                 <SidebarTrigger
-                  className="ml-auto"
+                  className="-mr-24 md:hidden"
                   iconClassName="size-28" />
               </div>
             </div>
 
             <main className="p-32 space-y-6 flex-grow flex flex-col justify-between">
               <div className="flex-grow">
-                <SkipSelection />
-                {currentStep === 1 && <div className="space-y-4">
+                {currentStep === 1 && <div className="space-y-6 text-4xl flex items-center justify-center h-full">
                   Step 1
                 </div>}
 
-                {currentStep === 2 && <div className="space-y-4">Step 2</div>}
+                {currentStep === 2 && <div className="space-y-6 text-4xl flex items-center justify-center h-full">
+                  Step 2
+                </div>}
 
-                {currentStep === 3 && <div className="space-y-4">Step 3</div>}
+                {currentStep === 3 && <div className="space-y-4 items-center justify-center h-full">
+                  <SkipSelection />
+                </div>}
 
-                {currentStep === 4 && <div className="space-y-6">Step 4</div>}
+                {currentStep === 4 && <div className="space-y-6 text-4xl flex items-center justify-center h-full">
+                  Step 4
+                </div>}
               </div>
               <div className="flex justify-between justify-self-end pt-6">
                 <Button variant="outline" onClick={handleBack} disabled={currentStep === 1}>
